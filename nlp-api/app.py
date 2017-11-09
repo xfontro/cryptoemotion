@@ -9,18 +9,18 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 sid = SentimentIntensityAnalyzer()
 
 app = Flask(__name__)
-sentence = None
+message = None
 
 @app.route("/api/score", methods=['POST'])
 def get_score():
-  if not request.json or not 'sentence' in request.json:
+  if not request.json or not 'message' in request.json:
     return "No data provided", 400
   else:
-    sentence = request.json['sentence']
-    app.logger.info(sentence)
+    message = request.json['message']
+    app.logger.info(message)
     app.logger.info("***********************************************")
 
-    ss = sid.polarity_scores(sentence)
+    ss = sid.polarity_scores(message)
     result = {}
     for k in ss:
       result["%s" % (k)] = ss[k]
