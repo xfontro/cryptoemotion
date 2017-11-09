@@ -13,6 +13,6 @@ end
 require 'api'
 require 'crypto_emotion_app'
 require 'reddit_service'
-require 'sentiment_service'
 require 'crypto_detail_service'
 require 'crypto_list_service'
+require 'watson_service'

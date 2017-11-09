@@ -4,8 +4,6 @@ module CryptoEmotion
   module Detail
     class CryptoDetail < Grape::Entity
       root 'crypto_details', 'crypto_detail'
-      expose :id
-      expose :erc_20, documentation: { type: :boolean, desc: 'ethereum token?' }
       expose :symbol, documentation: { type: :string, desc: 'token symbol' }
       expose :name, documentation: { type: :string, desc: 'crypto currency name' }
       expose :fear, documentation: { type: :string, desc: "level of 'fear, uncertainty, doubt'" }
@@ -24,7 +22,7 @@ module CryptoEmotion
               success: CryptoEmotion::Detail::CryptoDetail
         get ':id' do
           response = ::CryptoEmotion::CryptoDetailService.new(crypto_id: params[:id]).call
-          present response, with: ::CryptoEmotion::Detail::CryptoDetail
+          present response.symbolize_keys, with: ::CryptoEmotion::Detail::CryptoDetail
         end
       end
     end

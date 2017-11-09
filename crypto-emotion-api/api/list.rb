@@ -2,8 +2,6 @@ module CryptoEmotion
   module List
     class CryptoLightWeight < Grape::Entity
       root 'list_cryptos', 'list_crypto'
-      expose :id
-      expose :erc_20, documentation: { type: :boolean, desc: 'ethereum token?' }
       expose :symbol, documentation: { type: :string, desc: 'crypto symbol' }
       expose :name, documentation: { type: :string, desc: 'crypto name' }
       expose :fear, documentation: { type: :string, desc: "level of 'fear, uncertainty, doubt'" }
