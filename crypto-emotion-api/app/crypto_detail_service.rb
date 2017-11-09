@@ -3,13 +3,6 @@ require 'pry'
 
 module CryptoEmotion
   class CryptoDetailService
-    CRYPTO_ID_TO_SUBREDDIT = {
-      'eth' => 'ethtrader',
-      'btc' => 'bitcoinmarkets',
-      'ltc' => 'litecoin',
-      'neo' => 'neo'
-    }.freeze
-
     def initialize(crypto_id: 'eth')
       @crypto_id = crypto_id
     end
@@ -32,7 +25,15 @@ module CryptoEmotion
     end
 
     def update_and_return_crypto_detail(symbol:, detailed_hash:)
-      ::CryptoEmotion::CryptoListService.new.update(symbol: @crypto_id, detailed_hash: detailed_hash)
+      ::CryptoEmotion::CryptoListService.new.update(symbol: @crypto_id, name: name, detailed_hash: detailed_hash)
+    end
+
+    def name
+      ::CryptoEmotion::CoinConstants.for(symbol: @crypto_id)[:name]
+    end
+
+    def subreddit_name
+      ::CryptoEmotion::CoinConstants.for(symbol: @crypto_id)[:subreddit]
     end
   end
 end
