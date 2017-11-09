@@ -19,4 +19,7 @@ services:
       - nlp-api:nlp-api
     volumes:
       - ${PWD}/crypto-emotion-api:/app
+    environment:
+      WATSON_USERNAME:
+      WATSON_PASSWORD:
 #    command: /bin/bash -c "tail -f /dev/null"

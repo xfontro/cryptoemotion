@@ -1,11 +1,13 @@
 require 'redd'
-
+require 'pry'
 module CryptoEmotion
   class WatsonService
-    WATSON_API_URL = 'url'.freeze
+    WATSON_API_URL = 'https://gateway.watsonplatform.net/natural-language-understanding/api/v1/analyze?version=2017-02-27'.freeze
 
     def initialize(messages: "default message")
       @messages = messages
+      @username = ENV['WATSON_USERNAME']
+      @password = ENV['WATSON_PASSWORD']
     end
 
     def call
@@ -15,6 +17,7 @@ module CryptoEmotion
     private
 
     def calculate_watson_sentiment
+      binding.pry
       response = api_call
     end
 
@@ -25,11 +28,24 @@ module CryptoEmotion
     end
 
     def payload
-      @messages.flatten!
+      {
+        "text": @messages.join,
+        "features": {
+          "emotion": {},
+          "sentiment": {}
+        },
+        "language": "en"
+      }
+      
     end
 
     def api_call
-      RestClient.post WATSON_API_URL, payload.to_json, { content_type: :json, accept: :json }
+      RestClient::Request.execute(
+        method: :post, url: WATSON_API_URL,
+        user: @username, password: @password,
+        payload: payload.to_json,
+        :headers => { :content_type => "application/json", :accept => "application/json" }
+      )
     end
   end
 end

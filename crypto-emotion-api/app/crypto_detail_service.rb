@@ -22,7 +22,8 @@ module CryptoEmotion
 
     def return_crypto_detail
       reddit_messages = ::CryptoEmotion::RedditService.new(subreddit_name: subreddit_name).call
-      score = ::CryptoEmotion::SentimentService.new(messages: reddit_messages).call
+      score = ::CryptoEmotion::WatsonService.new(messages: reddit_messages).call
+      #score = ::CryptoEmotion::SentimentService.new(messages: reddit_messages).call
       update_crypto_detail(symbol: @crypto_id, sentiment_score: score)
       cripto_detail_hash(symbol: @crypto_id, sentiment_score: score)
     end

@@ -13,5 +13,8 @@ services:
       dockerfile: ./Dockerfile
     links:
       - nlp-api:nlp-api
+    environment:
+      WATSON_USERNAME:
+      WATSON_PASSWORD:
     ports:
       - 3000:3000
