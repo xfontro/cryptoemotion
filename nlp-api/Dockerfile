@@ -8,4 +8,6 @@ RUN pip install flask
 
 COPY . /app
 
+EXPOSE 9000
+
 CMD [ "python", "app.py" ]
