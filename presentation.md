@@ -20,7 +20,7 @@ Once all this data is processed and gathered, it is exposed to the clients throu
 ## Frontend
 A website that offers in-depth details for every cryptocoin. Not only emotion-related, but also actual information about the coin like the real value in dollars, growth chart, bitcoin equivalent value among others.
 
-## Telegram bot
+## Telegram bot
 A simple Telegram bot that provides you the very basic information about a certain cryptocoin: emotions and sentiment value.
 
 # Further improvements
