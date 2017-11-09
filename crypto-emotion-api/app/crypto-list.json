@@ -1,0 +1,38 @@
+{
+  "btc": {
+    "name": "bitcoin",
+    "sentiment_score": 0.5,
+    "fear": 0.2,
+    "anger": 0.4,
+    "disgust": 0.1,
+    "joy": 0.9,
+    "sadness": 0.9
+  },
+  "eth":{
+    "name": "ethereum",
+    "sentiment_score": 0.5,
+    "fear": 0.2,
+    "anger": 0.4,
+    "disgust": 0.1,
+    "joy": 0.9,
+    "sadness": 0.9
+  },
+  "ltc":{
+    "name": "litecoin",
+    "sentiment_score": 0.5,
+    "fear": 0.2,
+    "anger": 0.4,
+    "disgust": 0.1,
+    "joy": 0.9,
+    "sadness": 0.9
+  },
+  "neo":{
+    "name": "neo",
+    "sentiment_score": 0.5,
+    "fear": 0.2,
+    "anger": 0.4,
+    "disgust": 0.1,
+    "joy": 0.9,
+    "sadness": 0.9
+  }
+}

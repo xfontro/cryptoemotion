@@ -14,7 +14,7 @@ module CryptoEmotion
     private
 
     def retrieve_subreddit_hot_messages
-      client.subreddit(@subreddit_name).hot({limit: 1}).each do |hot_thread|
+      client.subreddit(@subreddit_name).hot({limit: 5}).each do |hot_thread|
         hot_thread.comments.each do |c|
           if c.respond_to?(:body)
             @messages << c.body
