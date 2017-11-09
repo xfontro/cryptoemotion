@@ -6,10 +6,12 @@ services:
       context: ./nlp-api
       dockerfile: ./Dockerfile
     ports:
-      - 9000:9000
+      - 9000
   emotion-api:
     build:
       context: ./crypto-emotion-api
       dockerfile: ./Dockerfile
+    links:
+      - nlp-api:nlp-api
     ports:
       - 3000:3000

@@ -15,5 +15,8 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - 3000:3000
+    links:
+      - nlp-api:nlp-api
     volumes:
       - ${PWD}/crypto-emotion-api:/app
+#    command: /bin/bash -c "tail -f /dev/null"
