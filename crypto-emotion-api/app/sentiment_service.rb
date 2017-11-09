@@ -17,16 +17,22 @@ module CryptoEmotion
 
     def crypto_score
       calculate_strings_sentiment_scores
-      scores_mean
+      detailed_hash
     end
 
     def calculate_strings_sentiment_scores
-      @messages.each do |message|
-        res = RestClient.post "http://nlp-api:9000/api/score", {'message' => message}.to_json, {content_type: :json, accept: :json}
-        @scores << JSON[res.body]["compound"]
-      end
+      # @messages.each do |message|
+      #   res = RestClient.post "http://nlp-api:9000/api/score", {'message' => message}.to_json, {content_type: :json, accept: :json}
+      #   @scores << JSON[res.body]["compound"]
+      # end
 
-      @scores
+      @scores = [0,0.2,0,8]
+    end
+
+    def detailed_hash
+      {
+        sentiment_score: scores_mean
+      }
     end
 
     def scores_mean

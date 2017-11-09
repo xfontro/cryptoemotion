@@ -22,24 +22,17 @@ module CryptoEmotion
 
     def return_crypto_detail
       reddit_messages = ::CryptoEmotion::RedditService.new(subreddit_name: subreddit_name).call
-      score = ::CryptoEmotion::SentimentService.new(messages: reddit_messages).call
-      update_crypto_detail(symbol: @crypto_id, sentiment_score: score)
-      cripto_detail_hash(symbol: @crypto_id, sentiment_score: score)
+      detailed_hash = ::CryptoEmotion::SentimentService.new(messages: reddit_messages).call
+
+      update_crypto_detail(symbol: @crypto_id, detailed_hash: detailed_hash)
     end
 
     def subreddit_name
       CRYPTO_ID_TO_SUBREDDIT[@crypto_id]
     end
 
-    def cripto_detail_hash(symbol:, sentiment_score:)
-      {
-        symbol: symbol,
-        sentiment_score: sentiment_score
-      }
-    end
-
-    def update_crypto_detail(symbol:, sentiment_score:)
-      ::CryptoEmotion::CryptoListService.new.update(symbol: @crypto_id, sentiment_score: sentiment_score)
+    def update_crypto_detail(symbol:, detailed_hash:)
+      ::CryptoEmotion::CryptoListService.new.update(symbol: @crypto_id, detailed_hash: detailed_hash)
     end
   end
 end
