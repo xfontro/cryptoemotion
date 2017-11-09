@@ -6,7 +6,7 @@ module CryptoEmotion
       'ltc' => { name: 'litecoin', subreddit: 'litecoin'},
       'neo' => { name: 'neo', subreddit: 'neo'},
       'elix' => { name: 'elixir', subreddit: 'elixirtoken'},
-      'wtc' => { name: 'bitcoin', subreddit: 'waltonchain'},
+      'wtc' => { name: 'walton', subreddit: 'waltonchain'},
       'req' => { name: 'req', subreddit: 'requestnetwork'},
       'ark' => { name: 'ark', subreddit: 'arkecosystem'},
       'omg' => { name: 'omg', subreddit: 'omise_go'}
