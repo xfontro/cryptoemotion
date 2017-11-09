@@ -8,16 +8,23 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
-app.post('/new-message', function(req, res) {
-	const {message} = req.body
+function getCryptoData(telegramInput, cryptoName, res) {
+	return axios.post('nuestra api', { 
+			cryptoName
+		})
+		.then(response => {
+			sendTelegramResponse(telegramInput, response, res)
+		})
+		.catch(err => {
+			console.log('Error :', err)
+			res.end('Error :' + err)
+		});
+}
 
-	if (!message || message.text.toLowerCase().indexOf('marco') < 0) {
-		return res.end();
-	}
-
+function sendTelegramResponse(telegramInput, responseToSend, res) {
 	axios.post('https://api.telegram.org/bot458630248:AAEHN90c6xmABVy_xeucjJqegakTd-O5izc/sendMessage', {
-		chat_id: message.chat.id,
-		text: 'Polo!!'
+		chat_id: telegramInput.chat.id,
+		text: responseToSend
 	})
 	.then(response => {
 		console.log('Message posted')
@@ -26,7 +33,24 @@ app.post('/new-message', function(req, res) {
 	.catch(err => {
 		console.log('Error :', err)
 		res.end('Error :' + err)
-	})
+	});
+}
+
+app.post('/new-message', function(req, res) {
+	const telegramInput = req.body.message
+
+	if (!telegramInput) {
+		return res.end();
+	}
+
+	var telegramMessage = telegramInput.text.toLowerCase();
+
+	if (['btc', 'eth', 'ltc', 'neo'].includes(telegramMessage)) {
+		//getCryptoData(telegramMessage, res);
+		sendTelegramResponse(telegramInput, telegramMessage + ' response', res);
+	} else {
+		return res.end();
+	}
 });
 
 app.listen(3000, function() {
