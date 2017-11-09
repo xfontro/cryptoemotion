@@ -3,7 +3,6 @@ var app = express();
 var bodyParser = require('body-parser');
 const axios = require('axios');
 
-const CRYPTOCOINS = ['btc', 'eth', 'ltc', 'neo'];
 const EMOJI_GRAPH = '📊';
 const EMOJI_JOY = '😁';
 const EMOJI_ANGER = '😡';
@@ -18,13 +17,13 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
-function getCryptoData(telegramInput, cryptoSymbol, res) {
+function getCryptoData(telegramInput, crypto, res) {
 	return axios.get('http://35.177.69.211:3000/api/list/')
 		.then(response => {
 			var cryptoList = response.data.list_cryptos;
 			var responseFormatted;
 			for (var i = 0; i < cryptoList.length; i++) {
-				if (cryptoList[i].symbol == cryptoSymbol) {
+				if (cryptoList[i].symbol == crypto || cryptoList[i].name == crypto) {
 					responseFormatted = formatResponse(cryptoList[i]);
 					break;
 				}
@@ -86,12 +85,7 @@ app.post('/new-message', function(req, res) {
 	}
 
 	var telegramMessage = telegramInput.text.toLowerCase();
-
-	if (CRYPTOCOINS.includes(telegramMessage)) {
-		getCryptoData(telegramInput, telegramMessage, res);
-	} else {
-		return res.end();
-	}
+	getCryptoData(telegramInput, telegramMessage, res);
 });
 
 app.listen(3000, function() {
