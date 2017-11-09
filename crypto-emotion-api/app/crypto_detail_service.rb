@@ -20,20 +20,20 @@ module CryptoEmotion
       update_and_return_crypto_detail(symbol: @crypto_id, detailed_hash: detailed_hash)
     end
 
-    def subreddit_name
-      CRYPTO_ID_TO_SUBREDDIT[@crypto_id]
-    end
-
     def update_and_return_crypto_detail(symbol:, detailed_hash:)
       ::CryptoEmotion::CryptoListService.new.update(symbol: @crypto_id, name: name, detailed_hash: detailed_hash)
     end
 
     def name
-      ::CryptoEmotion::CoinConstants.for(symbol: @crypto_id)[:name]
+      coin_constant[:name]
     end
 
     def subreddit_name
-      ::CryptoEmotion::CoinConstants.for(symbol: @crypto_id)[:subreddit]
+      coin_constant[:subreddit]
+    end
+
+    def coin_constant
+      @coin_constant ||= ::CryptoEmotion::CoinConstants.for(symbol: @crypto_id)
     end
   end
 end
