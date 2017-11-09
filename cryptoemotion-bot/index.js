@@ -3,6 +3,18 @@ var app = express();
 var bodyParser = require('body-parser');
 const axios = require('axios');
 
+const CRYPTOCOINS = ['btc', 'eth', 'ltc', 'neo'];
+const EMOJI_GRAPH = '📊';
+const EMOJI_JOY = '😁';
+const EMOJI_ANGER = '😡';
+const EMOJI_DISGUST = '🤢';
+const EMOJI_SADNESS = '😭';
+const EMOJI_FEAR = '😱';
+const EMOJI_POSITIVE = '👍';
+const EMOJI_NEGATIVE = '👎';
+
+const RESPONSE_BITCOIN = EMOJI_GRAPH + " Bitcoin (BTC)\n\n" + EMOJI_JOY + " Joy: 27%\n" + EMOJI_ANGER + " Anger: 41%\n" + EMOJI_DISGUST + " Disgust: 11%\n" + EMOJI_SADNESS + " Sadness: 38%\n" + EMOJI_FEAR + " Fear: 27%\n\n" + EMOJI_POSITIVE + " Sentiment score: +0.24";
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: true
@@ -45,9 +57,9 @@ app.post('/new-message', function(req, res) {
 
 	var telegramMessage = telegramInput.text.toLowerCase();
 
-	if (['btc', 'eth', 'ltc', 'neo'].includes(telegramMessage)) {
+	if (CRYPTOCOINS.includes(telegramMessage)) {
 		//getCryptoData(telegramMessage, res);
-		sendTelegramResponse(telegramInput, telegramMessage + ' response', res);
+		sendTelegramResponse(telegramInput, RESPONSE_BITCOIN, res);
 	} else {
 		return res.end();
 	}
