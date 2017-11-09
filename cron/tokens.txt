@@ -1,0 +1,15 @@
+eth
+btc
+ltc
+neo
+elix
+wtc
+req
+ark
+omg
+xrp
+dash
+xem
+xmr
+miota
+gnt

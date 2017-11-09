@@ -4,21 +4,13 @@ require 'json'
 
 module CryptoEmotion
   class CryptoListService
-
-    CRYPTO_ID_TO_NAME = {
-      'eth' => 'ethereum',
-      'btc' => 'bitcoin',
-      'ltc' => 'litecoin',
-      'neo' => 'neo'
-    }.freeze
-
     def initialize
     end
 
     def read
       crypto_hash = read_crypto_list.map do |crypto_symbol, detailed_hash|
         {
-          name: CRYPTO_ID_TO_NAME[crypto_symbol],
+          name: ::CryptoEmotion::CoinConstants.for(symbol: crypto_symbol)[:name],
           symbol: crypto_symbol,
           sentiment_score: detailed_hash["sentiment_score"],
           fear: detailed_hash["fear"],
@@ -33,10 +25,13 @@ module CryptoEmotion
       crypto_hash
     end
 
-    def update(symbol:, detailed_hash:)
+    def update(symbol:, name:, detailed_hash:)
       json = read_crypto_list
       clean_detailed_hash = detailed_hash.delete_if { |k, v| v.nil? }
       clean_detailed_hash.each do |key,value|
+        if json[symbol].nil?
+          json[symbol] = {'name'=> name,'symbol'=> symbol}
+        end
         json[symbol][key] = value
       end
       write_crypto_list(json)
