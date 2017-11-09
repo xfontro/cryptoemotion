@@ -9,7 +9,13 @@ module CryptoEmotion
       'wtc' => { name: 'walton', subreddit: 'waltonchain'},
       'req' => { name: 'req', subreddit: 'requestnetwork'},
       'ark' => { name: 'ark', subreddit: 'arkecosystem'},
-      'omg' => { name: 'omg', subreddit: 'omise_go'}
+      'omg' => { name: 'omg', subreddit: 'omise_go'},
+      'xrp' => { name: 'ripple', subreddit: 'ripple'},
+      'dash' => { name: 'dash', subreddit: 'dashpay'},
+      'xem' => { name: 'nem', subreddit: 'nem'},
+      'xmr' => { name: 'monero', subreddit: 'monero'},
+      'miota' => { name: 'iota', subreddit: 'iota'},
+      'gnt' => { name: 'golem', subreddit: 'golemproject'}
     }.freeze
 
     def self.for(symbol: )
