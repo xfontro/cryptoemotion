@@ -2,8 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { configureStore } from 'datamodel/store';
-var app_dir = path.resolve(__dirname, './containers/App');
-const App = require(app_dir);
+import App from './containers/App';
 
 const store = configureStore();
 
