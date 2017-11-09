@@ -18,7 +18,7 @@ module CryptoEmotion
           disgust: detailed_hash["disgust"],
           joy: detailed_hash["joy"],
           sadness: detailed_hash["sadness"],
-          keywords: detailed_hash["keywords"]
+          source: detailed_hash["source"]
         }
       end
 
@@ -26,11 +26,16 @@ module CryptoEmotion
     end
 
     def update(symbol:, name:, detailed_hash:)
+      coin_constant = ::CryptoEmotion::CoinConstants.for(symbol: symbol)
       json = read_crypto_list
       clean_detailed_hash = detailed_hash.delete_if { |k, v| v.nil? }
       clean_detailed_hash.each do |key,value|
         if json[symbol].nil?
-          json[symbol] = {'name'=> name,'symbol'=> symbol}
+          json[symbol] = {
+            'name'=> coin_constant[:name],
+            'symbol'=> symbol,
+            'source' => "r/#{coin_constant[:subreddit]}"
+          }
         end
         json[symbol][key] = value
       end
