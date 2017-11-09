@@ -1,0 +1,19 @@
+version: '2.1'
+
+services:
+  nlp-api:
+    build:
+      context: ./nlp-api
+      dockerfile: ./Dockerfile
+    ports:
+      - 9000:9000
+    volumes:
+      - ${PWD}/nlp-api:/app
+  emotion-api:
+    build:
+      context: ./crypto-emotion-api
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ${PWD}/crypto-emotion-api:/app
