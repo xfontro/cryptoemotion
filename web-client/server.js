@@ -3,12 +3,11 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.js');
 const app = express();
-var path = require('path');
-
+ 
 const compiler = webpack(webpackConfig);
  
 app.use(express.static('public'));
-app.use(express.static(path.resolve(__dirname, './dist')));
+app.use(express.static(__dirname + '/dist'));
  
 app.use(webpackDevMiddleware(compiler, {
   filename: 'bundle.js',
