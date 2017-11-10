@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 function getCryptoData(telegramInput, crypto, res) {
-	return axios.get('http://35.177.69.211:3000/api/list/')
+	return axios.get('http://35.176.189.136:3000/api/list/')
 		.then(response => {
 			var cryptoList = response.data.list_cryptos;
 			var responseFormatted;
