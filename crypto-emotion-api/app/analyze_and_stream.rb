@@ -13,7 +13,7 @@ module CryptoEmotion
     private
 
     def random_symbol
-      ["eth", "btc", "ltc", "neo", "elix", "wtc", "req", "ark", "omg", "xrp", "dash", "xem", "xmr", "miota", "gnt"]
+      ["eth", "btc", "ltc", "neo"]
     end
 
     def stream
