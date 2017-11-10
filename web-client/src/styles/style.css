@@ -346,3 +346,18 @@ li.fear:after {
 #pricing-table h3.fear {
     background-image: linear-gradient(#fff, #8223e0);
 }
+
+.emotion-source > a {
+    padding-left: 25px;
+    font-size: 0.8em;
+    text-decoration: none;
+    color: black;
+}
+.emotion-source:before {
+    position: absolute;
+    background: url(/assets/reddit.png) no-repeat;
+    background-size: cover;
+    height: 15px;
+    width: 15px;
+    content: ' ';
+}

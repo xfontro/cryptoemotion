@@ -17,6 +17,9 @@ const EmotionDetail = (props) => {
             </li>
           ))
         }
+        <li className="emotion-source">
+          <a href={ `https://www.reddit.com/${props.source}` }>{ props.source }</a>
+        </li>	
       </ul> 
     </div>
   );
@@ -28,6 +31,7 @@ EmotionDetail.propTypes = {
   anger: PropTypes.number.isRequired,
   disgust: PropTypes.number.isRequired,
   fear: PropTypes.number.isRequired,
+  source: PropTypes.string.isRequired,
 };
 
 export default EmotionDetail;
