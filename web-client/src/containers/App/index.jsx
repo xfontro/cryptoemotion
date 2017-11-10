@@ -40,6 +40,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.actions.getMessage();
     setInterval(() => {
       this.actions.getMessage();
     }, 5000);
