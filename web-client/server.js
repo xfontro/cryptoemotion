@@ -2,12 +2,10 @@ const express = require('express');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.js');
-const cors = require('cors');
 const app = express();
  
 const compiler = webpack(webpackConfig);
 
-app.use(cors());
 app.use(express.static('public'));
 app.use(express.static(__dirname + '/dist'));
  

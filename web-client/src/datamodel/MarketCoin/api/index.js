@@ -13,7 +13,8 @@ const getCoins = () => {
   return fetchAPIData(
     `${COINMARKET_API_URL}?limit=430`,
     { ...header,
-      'Access-Control-Allow-Origin': 'http://cryptoemotion.herokuapp.com/',
+      mode: 'cors',
+      'Access-Control-Allow-Origin':'*'
     }
   ).then(res => res);
 };
