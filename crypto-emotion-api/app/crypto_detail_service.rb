@@ -15,7 +15,7 @@ module CryptoEmotion
 
     def return_crypto_detail
       reddit_messages = ::CryptoEmotion::RedditService.new(subreddit_name: subreddit_name).call
-      detailed_hash = ::CryptoEmotion::WatsonService.new(messages: reddit_messages).call
+      detailed_hash = ::CryptoEmotion::AggregateSentimentService.new(messages: reddit_messages).call
 
       update_and_return_crypto_detail(symbol: @crypto_id, detailed_hash: detailed_hash)
     end
