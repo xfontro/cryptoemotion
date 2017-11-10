@@ -1,6 +1,8 @@
 ![CryptoEmotion](/screenshots/cryptoemotion-header.png)
 
 # Motivation (Intro)
+[Team presentation]
+
 I bet many of you already heard about cryptocurrencies given the huge increase in interest over the past few years. We, at Badi, started playing around investing in some coins just this year and rapidly got hooked.
 
 Since this is a very volatile market with high fluctuating prices, investing means taking some risks. And this is why we often see ourselves checking out growth charts and internet forums such as reddit among others. Knowing how other people actually perceive the coin helps you a lot when it comes to investing.
@@ -15,7 +17,9 @@ The project was developed following three main lines of work:
 ## Backend
 *The core of the project where all the magic happens.*
 
-Periodically reads new messages from subreddits for every cryptocoin. After that, we use a powerful natural language processing tool called **Watson** that analyzes every message and calculates the frequency of a series of emotions: *joy*, *anger*, *disgust*, *sadness* and *fear*, as well as an additional value called *sentiment score* that indicates the overall level of emotion.
+Periodically reads new messages from subreddits for every cryptocoin. In order to process that information, we used a powerful natural language processing tool called  **Watson** that analyzes every message and calculates the frequency of a series of emotions: *joy*, *anger*, *disgust*, *sadness* and *fear*, as well as an additional value called *sentiment score* that indicates the overall level of emotion. We also used a python library called **nltk**, which give us a general *sentiment score*.
+
+We started just using **nltk** library to have an initial approach, but then we also added **Watson** to improve our algorithm with the emotions. Finally we used a mix of the two approached to calculate a general sentiment score.
 
 Once all this data is processed and gathered, it is exposed to the clients through a REST API.
 
