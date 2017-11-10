@@ -1,14 +1,14 @@
 {
-  "name": "badi-coding-challenge-react",
+  "name": "hackaton-crypto-emotion",
   "version": "1.0.0",
-  "description": "Frontend developer coding challenge (ReactJS) - BadiApp",
+  "description": "Pump & Dump prevent",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "keywords": [],
-  "author": "BadiApp",
+  "author": "CryptoTeam",
   "license": "ISC",
   "dependencies": {
     "babel-core": "^6.24.1",
