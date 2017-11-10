@@ -10,7 +10,7 @@ module CryptoEmotion
       expose :joy, documentation: { type: :string, desc: "level of 'fear of missing out'" }
       expose :sadness, documentation: { type: :string, desc: "level of 'fear of missing out'" }
       expose :sentiment_score, documentation: { type: :string, desc: "overall sentiment score." }
-      expose :source, documentation: { type: :string, desc: "overall sentiment score." }
+      expose :source, documentation: { type: :string, desc: "data source" }
     end
 
     class API < Grape::API
