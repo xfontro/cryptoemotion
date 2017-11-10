@@ -1,5 +1,5 @@
 const COINMARKET_API_URL = 'https://api.coinmarketcap.com/v1/ticker/';
-const EMOTIONS_API_URL = 'http://35.177.69.211:3000';
+const EMOTIONS_API_URL = 'http://35.176.189.136:3000';
 
 function scriptToGetCharts() {
   var charts = {};

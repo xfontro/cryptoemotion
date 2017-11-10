@@ -23,10 +23,12 @@ class App extends Component {
     fetchingEmotions: PropTypes.bool.isRequired,
     coins: PropTypes.array.isRequired,
     message: PropTypes.object,
+    fetchingMessage: PropTypes.bool,
   }
 
   static defaultProps = {
     message: null,
+    fetchingMessage: false,
   }
 
   constructor(props) {
@@ -42,7 +44,9 @@ class App extends Component {
   componentDidMount() {
     this.actions.getMessage();
     setInterval(() => {
-      this.actions.getMessage();
+      if (!this.props.fetchingMessage) {
+        this.actions.getMessage();
+      }
     }, 5000);
   }
 
@@ -79,5 +83,6 @@ export default connect(
     fetchingCoins: state.MarketCoin.fetchingCoins,
     fetchingEmotions: state.MarketCoin.fetchingEmotions,
     message: state.Message.message,
+    fetchingMessage: state.Message.fetching,
   }),
 )(App);

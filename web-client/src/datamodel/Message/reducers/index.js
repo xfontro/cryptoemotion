@@ -21,6 +21,7 @@ function messageSuccess(state, action) {
   return {
     ...state,
     message,
+    fetching: false,
   };
 }
 
