@@ -23,12 +23,12 @@ module CryptoEmotion
 
     def format_hash(response)
       {
-        sentiment_score: response["sentiment"]["document"]["score"],
-        joy: response["emotion"]["document"]["emotion"]["joy"],
-        fear: response["emotion"]["document"]["emotion"]["fear"],
-        disgust: response["emotion"]["document"]["emotion"]["disgust"],
-        sadness: response["emotion"]["document"]["emotion"]["sadness"],
-        anger: response["emotion"]["document"]["emotion"]["anger"]
+        sentiment_score: response["sentiment"]&.[]("document")&.[]("score"),
+        joy: response["emotion"]&.[]("document")&.[]("emotion")&.[]("joy"),
+        fear: response["emotion"]&.[]("document")&.[]("emotion")&.[]("fear"),
+        disgust: response["emotion"]&.[]("document")&.[]("emotion")&.[]("disgust"),
+        sadness: response["emotion"]&.[]("document")&.[]("emotion")&.[]("sadness"),
+        anger: response["emotion"]&.[]("document")&.[]("emotion")&.[]("anger")
       }
     end
 

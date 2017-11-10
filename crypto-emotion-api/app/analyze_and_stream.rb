@@ -18,7 +18,7 @@ module CryptoEmotion
 
     def stream
       @subreddit = ::CryptoEmotion::CoinConstants.for(symbol: random_symbol.sample)[:subreddit]
-      comment = reddit_client.subreddit(@subreddit).comments({limit: 1}).children.first
+      comment = reddit_client.subreddit(@subreddit).comments({limit: 10}).children.sample
       if comment.respond_to?(:body)
         watson_response = ::CryptoEmotion::WatsonService.new(messages: [comment.body]).call
         response = response_hash(comment.body,watson_response)
