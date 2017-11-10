@@ -204,6 +204,17 @@ header
     background-position-x: center;
 }
 
+header > a {
+    background-image: url(/assets/telegram.png);
+    background-repeat: no-repeat;
+    width: 48px;
+    height: 48px;
+    background-size: cover;
+    position: absolute;
+    right: 41px;
+    top: 24px;
+}
+
 .emotionDetail
 {
     background-color: #fafafa;
