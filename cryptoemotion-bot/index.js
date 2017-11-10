@@ -3,6 +3,8 @@ var app = express();
 var bodyParser = require('body-parser');
 const axios = require('axios');
 
+const CRYPTOCOINS = ['Bitcoin', 'BTC', 'Ethereum', 'ETH', 'Litecoin', 'LTC', 'Neo', 'NEO', 'Elixir', 'ELIX', 'Walton', 'WTC', 'Request Network', 'REQ', 'Ark', 'ARK', 'OmiseGO', 'OMG', 'Ripple', 'XRP', 'Dash', 'DASH', 'NEM', 'XEM', 'Monero', 'XMR', 'Iota', 'MIOTA', 'Golem', 'GNT' ];
+
 const EMOJI_GRAPH = '📊';
 const EMOJI_JOY = '😁';
 const EMOJI_ANGER = '😡';
@@ -10,6 +12,7 @@ const EMOJI_DISGUST = '🤢';
 const EMOJI_SADNESS = '😭';
 const EMOJI_FEAR = '😱';
 const EMOJI_POSITIVE = '👍';
+const EMOJI_NEUTRAL = '✋';
 const EMOJI_NEGATIVE = '👎';
 
 app.use(bodyParser.json());
@@ -41,19 +44,21 @@ function formatResponse(responseUnformatted) {
 	var cryptoDetail = responseUnformatted;
 
 	responseFormatted = EMOJI_GRAPH + " " + capitalizeFirstLetter(cryptoDetail.name) + " (" + cryptoDetail.symbol.toUpperCase() + ")\n\n";
-	responseFormatted += EMOJI_JOY + " Joy: " + cryptoDetail.joy + "\n";
-	responseFormatted += EMOJI_ANGER + " Anger: " + cryptoDetail.anger + "\n";
-	responseFormatted += EMOJI_DISGUST + " Disgust: " + cryptoDetail.disgust + "\n";
-	responseFormatted += EMOJI_SADNESS + " Sadness: " + cryptoDetail.sadness + "\n";
-	responseFormatted += EMOJI_FEAR + " Fear: " + cryptoDetail.fear + "\n\n";
+	responseFormatted += EMOJI_JOY + " Joy: " + cryptoDetail.joy.toFixed(2) + "\n";
+	responseFormatted += EMOJI_ANGER + " Anger: " + cryptoDetail.anger.toFixed(2) + "\n";
+	responseFormatted += EMOJI_DISGUST + " Disgust: " + cryptoDetail.disgust.toFixed(2) + "\n";
+	responseFormatted += EMOJI_SADNESS + " Sadness: " + cryptoDetail.sadness.toFixed(2) + "\n";
+	responseFormatted += EMOJI_FEAR + " Fear: " + cryptoDetail.fear.toFixed(2) + "\n\n";
 
-	if (cryptoDetail.sentiment_score >= 0) {
-		responseFormatted += EMOJI_POSITIVE;
-	} else {
+	if (cryptoDetail.sentiment_score < -0.05) {
 		responseFormatted += EMOJI_NEGATIVE;
+	} else if (cryptoDetail.sentiment_score >= -0.05 && cryptoDetail.sentiment_score <= 0.05) {
+		responseFormatted += EMOJI_NEUTRAL;
+	} else {
+		responseFormatted += EMOJI_POSITIVE;
 	}
 
-	responseFormatted += " Sentiment score: " + cryptoDetail.sentiment_score;
+	responseFormatted += " Sentiment score: " + cryptoDetail.sentiment_score.toFixed(2);
 
 	return responseFormatted;
 }
@@ -77,6 +82,15 @@ function sendTelegramResponse(telegramInput, responseToSend, res) {
 	});
 }
 
+function getCryptoList() {
+	var cryptoList = "This is the list of all supported cryptocurrencies: \n\n";
+	for (var i=0; i<CRYPTOCOINS.length; i+=2) {
+		cryptoList += CRYPTOCOINS[i] + " (" + CRYPTOCOINS[i+1] + ")\n";
+	}
+
+	return cryptoList;
+}
+
 app.post('/new-message', function(req, res) {
 	const telegramInput = req.body.message
 
@@ -85,7 +99,15 @@ app.post('/new-message', function(req, res) {
 	}
 
 	var telegramMessage = telegramInput.text.toLowerCase();
-	getCryptoData(telegramInput, telegramMessage, res);
+	if (CRYPTOCOINS.map(function(x) {return x.toLowerCase()}).includes(telegramMessage)) {
+		getCryptoData(telegramInput, telegramMessage, res);
+	} else if (telegramMessage == 'list') {
+		var cryptoList = getCryptoList();
+		sendTelegramResponse(telegramInput, cryptoList, res);
+	} else {
+		var defaultMessage = "Hi! I'm here to feed you with all the emotion-related data for your favorite cryptocurrency. Type the name (or symbol) of the desired coin, or 'list' to get a comprehensive list of all the supported ones.\n\nLearn more on http://cryptoemotion.herokuapp.com";
+		sendTelegramResponse(telegramInput, defaultMessage, res);
+	}
 });
 
 app.listen(3000, function() {

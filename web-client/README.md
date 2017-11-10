@@ -1,6 +1,3 @@
-BadiApp: ReactJS Coding Challenge Project
----
- 
 Compatibility:
 ---
 ```
