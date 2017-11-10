@@ -12,6 +12,7 @@ const EMOJI_DISGUST = '🤢';
 const EMOJI_SADNESS = '😭';
 const EMOJI_FEAR = '😱';
 const EMOJI_POSITIVE = '👍';
+const EMOJI_NEUTRAL = '✋';
 const EMOJI_NEGATIVE = '👎';
 
 app.use(bodyParser.json());
@@ -49,10 +50,12 @@ function formatResponse(responseUnformatted) {
 	responseFormatted += EMOJI_SADNESS + " Sadness: " + cryptoDetail.sadness.toFixed(2) + "\n";
 	responseFormatted += EMOJI_FEAR + " Fear: " + cryptoDetail.fear.toFixed(2) + "\n\n";
 
-	if (cryptoDetail.sentiment_score >= 0) {
-		responseFormatted += EMOJI_POSITIVE;
-	} else {
+	if (cryptoDetail.sentiment_score < -0.05) {
 		responseFormatted += EMOJI_NEGATIVE;
+	} else if (cryptoDetail.sentiment_score >= -0.05 && cryptoDetail.sentiment_score <= 0.05) {
+		responseFormatted += EMOJI_NEUTRAL;
+	} else {
+		responseFormatted += EMOJI_POSITIVE;
 	}
 
 	responseFormatted += " Sentiment score: " + cryptoDetail.sentiment_score.toFixed(2);
