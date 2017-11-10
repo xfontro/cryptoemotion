@@ -7,6 +7,7 @@ module CryptoEmotion
     mount ::CryptoEmotion::RescueFrom
     mount ::CryptoEmotion::List::API
     mount ::CryptoEmotion::Detail::API
+    mount ::CryptoEmotion::LastMessage::API
     add_swagger_documentation api_version: 'v1'
   end
 end

@@ -36,4 +36,8 @@ It was made using NodeJS and hosted on [Now](https://zeit.co/now) ([https://zeit
 ![Telegram Bot](/screenshots/telegram-bot.png)
 
 # Further improvements
+Sockets
+Keyword rankings
+Improve the algorithm
+...
 [needs more content]

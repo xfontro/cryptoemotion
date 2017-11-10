@@ -1,5 +1,9 @@
+require 'rack/websocket'
+require 'faye/websocket'
+require 'pry'
+
 module CryptoEmotion
-  class App
+  class App < Rack::WebSocket::Application
     def initialize
       @filenames = ['', '.html', 'index.html', '/index.html']
       @rack_static = ::Rack::Static.new(
@@ -25,7 +29,6 @@ module CryptoEmotion
     def call(env)
       # api
       response = CryptoEmotion::API.call(env)
-
       # Check if the App wants us to pass the response along to others
       if response[1]['X-Cascade'] == 'pass'
         # static files
