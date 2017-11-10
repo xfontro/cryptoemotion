@@ -7,8 +7,8 @@ class Message extends Component {
   };
 
   render() {
-    const { body, source, good_sentiment } = this.props.message;
-    const goodSentiment = good_sentiment > 0 ? true : false;
+    const { body, source, sentiment_score } = this.props.message;
+    const goodSentiment = sentiment_score > 0 ? true : false;
 
     return (
       <div className={ `message ${goodSentiment ? 'good' : 'bad'}` }>

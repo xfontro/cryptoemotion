@@ -19,6 +19,7 @@ const EmotionDetail = (props) => {
         }
         <li className="emotion-source">
           <a href={ `https://www.reddit.com/${props.source}` }>{ props.source }</a>
+          <span>Last 24h</span>
         </li>	
       </ul> 
     </div>
