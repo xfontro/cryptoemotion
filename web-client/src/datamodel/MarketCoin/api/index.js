@@ -3,13 +3,19 @@ import { COINMARKET_API_URL, EMOTIONS_API_URL } from 'staticdata';
 
 const header = {
   method: 'GET',
-  headers: { Accept: 'application/json', 'Content-Type': 'application/json', }
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  }
 };
 
 const getCoins = () => {
   return fetchAPIData(
     `${COINMARKET_API_URL}?limit=430`,
-    header
+    { ...header,
+      mode: 'cors',
+      'Access-Control-Allow-Origin':'*'
+    }
   ).then(res => res);
 };
 
