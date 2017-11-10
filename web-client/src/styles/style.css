@@ -4,7 +4,7 @@ body{
 }
 
 #pricing-table {
-    margin: 100px auto;
+    margin: 60px auto;
     text-align: center;
     width: 930px; /* total computed width = 222 x 3 + 226 */
 }
@@ -360,4 +360,43 @@ li.fear:after {
     height: 15px;
     width: 15px;
     content: ' ';
+}
+
+.message
+{
+    position: relative;
+    width: 580px;
+    display: flex;
+    min-height: 45px;
+    margin: 35px auto 0 auto;
+    color: white;
+    background-color: black;
+    opacity: 0.7;
+    z-index: 10000;
+    font-family: "Lucida Sans", "trebuchet MS", Arial, Helvetica;
+    padding: 10px 45px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.message_source {
+    position: absolute;
+    bottom: 5px;
+    right: 12px;
+    color: #e1b244;
+}
+.message.good:before {
+    position: absolute;
+    top: 30%;
+    left: 15px;
+    font-size: 20px;
+    content: '👍';
+}
+.message.bad:before {
+    position: absolute;
+    top: 30%;
+    left: 15px;
+    font-size: 20px;
+    content: '👎';
 }

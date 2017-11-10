@@ -1,7 +1,8 @@
 import * as MarketCoinModel from 'datamodel/MarketCoin/models';
+import * as MessageModel from 'datamodel/Message/models';
 
 const modelIndex = [
-  MarketCoinModel,
+  MarketCoinModel, MessageModel,
 ];
 
 export default { modelIndex };
