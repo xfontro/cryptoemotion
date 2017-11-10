@@ -8,8 +8,7 @@ I bet many of you already heard about cryptocurrencies given the huge increase i
 Since this is a very volatile market with high fluctuating prices, investing means taking some risks. And this is why we often see ourselves checking out growth charts and internet forums such as reddit among others. Knowing how other people actually perceive the coin helps you a lot when it comes to investing.
 
 # What
-We made a system that analyzes people's opinions and feels about a certain cryptocurrency. Applying sentiment analysis over
-[needs more content]
+We made a system that applies sentiment analysis and analyzes people's opinions and feels about a certain cryptocurrency.
 
 # How
 The project was developed following three main lines of work:
@@ -37,8 +36,8 @@ It was made using NodeJS and hosted on [Now](https://zeit.co/now) ([https://zeit
 
 # Further improvements
 ## Sockets
-[needs more content]
-## Keyword rankings
+Using sockets would be a great improvement since it'd let us send data in real time through the socket connection, thus making the website more alive and accurate.
+## Keyword ranking
 It would be interesting to develop a mechanism to gather the most occuring words for a given cryptocurrency, and maybe display it on the website in the form of a word cloud or as a keyword ranking.
 ## Improve the algorithm
 *This first algorithm approach leaves a lot of room for improvement.*
