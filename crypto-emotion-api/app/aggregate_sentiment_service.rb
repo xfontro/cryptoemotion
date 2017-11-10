@@ -19,11 +19,11 @@ module CryptoEmotion
     def format_hash(nlp_sentiment, watson_sentiment)
       {
         sentiment_score: (((nlp_sentiment[:sentiment_score] + 1) + (watson_sentiment[:sentiment_score] + 1)) / 2) - 1,
-        joy: watson_sentiment["joy"],
-        fear: watson_sentiment["fear"],
-        disgust: watson_sentiment["disgust"],
-        sadness: watson_sentiment["sadness"],
-        anger: watson_sentiment["anger"]
+        joy: watson_sentiment[:joy],
+        fear: watson_sentiment[:fear],
+        disgust: watson_sentiment[:disgust],
+        sadness: watson_sentiment[:sadness],
+        anger: watson_sentiment[:anger]
       }
     end
   end
