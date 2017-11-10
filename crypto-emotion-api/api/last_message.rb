@@ -1,11 +1,8 @@
-require 'pry'
-
 module CryptoEmotion
-  module Detail
-    class CryptoDetail < Grape::Entity
-      root 'crypto_details', 'crypto_detail'
-      expose :symbol, documentation: { type: :string, desc: 'token symbol' }
-      expose :name, documentation: { type: :string, desc: 'crypto currency name' }
+  module LastMessage
+    class CryptoMessage < Grape::Entity
+      root 'list_messages', 'last_message'
+      expose :body,documentation: { type: :string, desc: "level of 'fear, uncertainty, doubt'" }
       expose :fear, documentation: { type: :string, desc: "level of 'fear, uncertainty, doubt'" }
       expose :anger, documentation: { type: :string, desc: "level of 'fear of missing out'" }
       expose :disgust, documentation: { type: :string, desc: "level of 'fear of missing out'" }
@@ -17,13 +14,13 @@ module CryptoEmotion
 
     class API < Grape::API
       format :json
-      namespace :details do
-        desc 'Returns the the detailed information of the given crypto',
-              params: CryptoEmotion::Detail::CryptoDetail.documentation,
-              success: CryptoEmotion::Detail::CryptoDetail
-        get ':id' do
-          response = ::CryptoEmotion::CryptoDetailService.new(crypto_id: params[:id]).call
-          present response.symbolize_keys, with: ::CryptoEmotion::Detail::CryptoDetail
+      namespace :last_message do
+        desc "Returns a last message",
+              params: ::CryptoEmotion::LastMessage::CryptoMessage.documentation,
+              success: ::CryptoEmotion::LastMessage::CryptoMessage
+        get '/' do
+          response = ::CryptoEmotion::AnalyzeAndStream.new.call
+          present response, with: ::CryptoEmotion::LastMessage::CryptoMessage
         end
       end
     end

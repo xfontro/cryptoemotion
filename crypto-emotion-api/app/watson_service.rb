@@ -18,7 +18,7 @@ module CryptoEmotion
 
     def calculate_watson_sentiment
       response = api_call
-      format_hash(JSON.parse(response))
+      format_hash(JSON.parse(response)) unless JSON.parse(response).nil?
     end
 
     def format_hash(response)

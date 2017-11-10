@@ -14,6 +14,9 @@ gem 'nokogiri'
 gem 'redd'
 gem 'pry'
 gem 'rest-client'
+gem 'websocket-rack'
+gem 'faye-websocket'
+gem 'faye'
 
 group :development do
   gem 'rake'
