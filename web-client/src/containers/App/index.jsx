@@ -11,8 +11,8 @@ import Header from 'components/Header';
 import Particles from 'components/Particles';
 import Footer from 'components/Footer';
 
-import '../../styles/style';
-import '../../styles/icons.css';
+import 'styles/style';
+import 'styles/icons.css';
 
 class App extends Component {
   static propTypes = {
@@ -51,9 +51,8 @@ class App extends Component {
         <Header />
         { fetchingCoins || fetchingEmotions
           ? <Loader />
-          : <CoinList coins={ coins } />
+          : [<CoinList coins={ coins } key="coins" />, <Footer key="footer" />]
         }
-        <Footer />
       </div>
     );
   }

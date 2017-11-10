@@ -29,6 +29,21 @@ class CoinListItem extends Component {
     emotion: null,
   };
 
+  getMainEmotion(emotions) {
+    if (!emotions) return '';
+
+    const emotion = Object.keys(emotions).reduce((prev, curr) => {
+      const val = emotions[curr];
+
+      if (typeof val !== 'number' || curr === 'sentimentScore') {
+        return prev;
+      }
+
+      return val > prev.val ? { name: curr, val } : prev;
+    }, { name: '', val: 0 });
+    return emotion.name;
+  }
+
   render() {
     const {
       chart,
@@ -44,9 +59,10 @@ class CoinListItem extends Component {
 
     const logoClassName = `s-s-${name.toLowerCase().replace(/ /g,'-')} currency-logo-sprite`;
 
+
     return (
       <div className="plan">
-        <h3>
+        <h3 className={ this.getMainEmotion(emotion) }>
           { name }
           <div className={ logoClassName } />
           { emotion && <Emotion { ...emotion } /> }
